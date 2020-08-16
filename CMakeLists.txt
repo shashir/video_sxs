@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 3.17)
+project(video_sxs)
+
+set(CMAKE_CXX_STANDARD 20)
+find_package(OpenCV REQUIRED)
+#find_package(absl REQUIRED)
+add_subdirectory(abseil-cpp)
+add_executable(video_sxs video_sxs.cc)
+target_link_libraries(video_sxs ${OpenCV_LIBS})
+target_link_libraries(video_sxs absl::base absl::flags absl::flags_parse absl::strings)

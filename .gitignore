@@ -1,0 +1,16 @@
+# Temporary files used by editors.
+.*
+!.gitignore
+*~
+*.swp
+.#*
+\#*
+
+# Project files from IDEs.
+.classpath
+.project
+.idea
+
+# Build and run artifacts
+cmake-build-debug
+build
