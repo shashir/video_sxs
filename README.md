@@ -6,15 +6,20 @@ Plays videos side by side in order to compare quality.
 
 * CMake
 * OpenCV
+* Abseil
 
 ```sh
 brew install cmake
 brew install opencv
+
+cd path/to/video_sxs
+git clone https://github.com/abseil/abseil-cpp.git
 ```
 
 ## Build and run
 
 ```sh
+cd path/to/video_sxs
 mkdir build
 cd build
 cmake ..
