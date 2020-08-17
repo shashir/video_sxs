@@ -11,6 +11,7 @@ ABSL_FLAG(std::string, input1, "", "First video.");
 ABSL_FLAG(std::string, input2, "", "Second video.");
 ABSL_FLAG(int, input1_start_frame, 0, "Frame to start first video from.");
 ABSL_FLAG(int, input2_start_frame, 0, "Frame to start second video from.");
+ABSL_FLAG(int, max_num_frames, INT_MAX, "Maximum number of frames to write.");
 ABSL_FLAG(bool, adapt_first, false,
           "Whether to change size/aspect ratio of the first video. If "
           "false, then only the second video will have it's size/aspect ratio "
@@ -134,8 +135,10 @@ int main(int argc, char* argv[]) {
     throw std::invalid_argument("Unable to open output file: " + output_path);
   }
 
-  const int min_frames = std::min(
-      capture1.frames - video1_start, capture2.frames - video2_start);
+  const int min_frames = std::min({
+      capture1.frames - video1_start,
+      capture2.frames - video2_start,
+      absl::GetFlag(FLAGS_max_num_frames)});
   int channels = 0;
 
   bool preview_video = true;
